@@ -13,12 +13,13 @@ const LogoBox = styled.span`
   padding: 10px;
 
   &:hover img {
-    transform: rotate(90deg);
+    transform: scaleX(-1);
   }
 `;
 
 const Logo = () => {
   const footPrintImg = `/images/bouncingSlime${useColorModeValue("", "")}.gif`;
+
   return (
     <Link href="/">
       <a>

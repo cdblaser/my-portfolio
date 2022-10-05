@@ -59,7 +59,7 @@ const Page = () => {
               borderStyle="solid"
               maxWidth="100px"
               display="inline-block"
-              src="/images/Max.gif"
+              src="/images/profPic.jpg"
               alt="Profile image"
               borderRadius="full"
               bg="black"
@@ -120,6 +120,9 @@ const Page = () => {
             State University with a Chemistry BS. Conducted research with
             environmental applications, namely fertilizer runoff analysis and
             biosolid pharmaceutical analysis
+          </BioSection>
+          <BioSection>
+            <BioYear>2016</BioYear>Met my other half ❤
           </BioSection>
           <BioSection>
             <BioYear>2017</BioYear>My first daughter was born!! I love you,
@@ -191,14 +194,14 @@ const Page = () => {
         </Section>
         <Section delay={0.3}>
           <Heading as="h3" variant="section-title">
-            On the web
+            Online Presence
           </Heading>
           <List>
             <ListItem>
               <Link href="https://github.com/cdblaser" target="_blank">
                 <Button
                   variant="ghost"
-                  colorScheme="teal"
+                  colorScheme="telegram"
                   leftIcon={<Icon as={IoLogoGithub} />}
                 >
                   @cdblaser
@@ -209,7 +212,7 @@ const Page = () => {
               <Link href="https://discord.com" target="_blank">
                 <Button
                   variant="ghost"
-                  colorScheme="teal"
+                  colorScheme="telegram"
                   leftIcon={<Icon as={IoLogoDiscord} />}
                 >
                   Bignob#6843
@@ -220,7 +223,7 @@ const Page = () => {
           <SimpleGrid columns={[1, 2, 2]} gap={6}>
             <GridItem
               href="https://youtube.com"
-              title="me play piano"
+              title="Watch me play piano"
               thumbnail={thumbPiano}
             >
               My youtube

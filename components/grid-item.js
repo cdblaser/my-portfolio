@@ -13,7 +13,7 @@ export const GridItem = ({ children, href, title, thumbnail }) => (
         placeholder="blur"
         loading="lazy"
       />
-      <LinkOverlay href={href} target="_blank">
+      <LinkOverlay href={href} target="_blank" rel="noopener noreferrer">
         <Text mt={2}>{title}</Text>
       </LinkOverlay>
       <Text fontSize={14}>{children}</Text>
@@ -32,8 +32,8 @@ export const WorkGridItem = ({ children, id, title, thumbnail }) => (
           placeholder="empty"
         />
         <LinkOverlay href={`/works/${id}`}>
-          <Text mt={2} fontSize={20} color="HighlightText">
-            <Link>{title}</Link>
+          <Text mt={2} fontSize={20} colorScheme="telegram">
+            {title}
           </Text>
         </LinkOverlay>
         <Text fontSize={14}>{children}</Text>
@@ -44,22 +44,20 @@ export const WorkGridItem = ({ children, id, title, thumbnail }) => (
 
 export const PortfolioGridItem = ({ children, href, id, title, thumbnail }) => (
   <Box w="100%" align="center">
-    <NextLink href={href}>
-      <LinkBox cursor="pointer">
-        <Image
-          src={thumbnail}
-          alt={title}
-          className="grid-item-thumbnail"
-          placeholder="empty"
-        />
-        <LinkOverlay href={href}>
-          <Text mt={2} fontSize={20} color="HighlightText">
-            <Link>{title}</Link>
-          </Text>
-        </LinkOverlay>
-        <Text fontSize={14}>{children}</Text>
-      </LinkBox>
-    </NextLink>
+    <LinkBox cursor="pointer">
+      <Image
+        src={thumbnail}
+        alt={title}
+        className="grid-item-thumbnail"
+        placeholder="empty"
+      />
+      <LinkOverlay href={href} target="_blank" rel="noopener noreferrer">
+        <Text mt={2} fontSize={20} colorScheme="telegram">
+          {title}
+        </Text>
+      </LinkOverlay>
+      <Text fontSize={14}>{children}</Text>
+    </LinkBox>
   </Box>
 );
 

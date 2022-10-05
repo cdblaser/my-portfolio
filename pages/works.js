@@ -39,8 +39,8 @@ const Works = () => {
               thumbnail={thumb3c}
               href="https://3cisd.com"
             >
-              Social Development-focused products site with user account
-              functionality. Contributions included user account manage
+              Social development-focused products commerce site with user
+              account functionality. Contributions included user account manage
               functionality and user account dashboard views
             </PortfolioGridItem>
           </Section>
