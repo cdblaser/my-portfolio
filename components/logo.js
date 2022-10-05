@@ -34,6 +34,7 @@ const Logo = () => {
             fontFamily="monospace"
             fontWeight="bold"
             ml={3}
+            mt={4}
           >
             Curtis Blaser
           </Text>

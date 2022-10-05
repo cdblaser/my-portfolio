@@ -8,7 +8,7 @@ import thumbJohn from "../public/images/works/3cPortfolioDashboardPage.png";
 const Posts = () => (
   <Layout title="Posts">
     <Container>
-      <Heading as="h3" fontSize={20} mb={4}>
+      <Heading as="h3" fontSize={20} mb={4} mt={2}>
         Popular Posts
       </Heading>
       <Section delay={0.1}>

@@ -10,7 +10,7 @@ const Works = () => {
   return (
     <Layout>
       <Container>
-        <Heading as="h3" fontSize={20} mb={4}>
+        <Heading as="h3" fontSize={20} mb={4} mt={2}>
           Works
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} gap={6}>

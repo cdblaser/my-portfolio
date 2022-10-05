@@ -38,7 +38,7 @@ const Page = () => {
           mb={6}
           align="center"
         >
-          HaHAA
+          Welcome to my website!
         </Box>
         <Box display={{ md: "flex" }}>
           <Box flexGrow={1}>
@@ -79,7 +79,7 @@ const Page = () => {
           </Paragraph>
           <Box align="center" my={4}>
             <NextLink href="/works">
-              <Button rightIcon={<ChevronRightIcon />} colorScheme="teal">
+              <Button rightIcon={<ChevronRightIcon />} colorScheme="telegram">
                 My portfolio
               </Button>
             </NextLink>
