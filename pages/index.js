@@ -3,13 +3,14 @@ import {
   Container,
   Box,
   Heading,
-  Image,
   Link,
   useColorModeValue,
   List,
   ListItem,
   Button,
+  Image,
   Icon,
+  chakra,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 import Layout from "../components/layouts/article";
@@ -18,8 +19,13 @@ import Paragraph from "../components/paragraph";
 import { BioSection, BioYear } from "../components/bio";
 import { AwardSection, Award } from "../components/awards";
 import { IoLogoGithub, IoLogoDiscord, IoLogoYoutube } from "react-icons/io5";
+import NextImage from "next/image";
 
-const Page = () => {
+const ProfileImage = chakra(Image, {
+  shouldForwardProp: (prop) => ["width", "height", "src", "alt"].includes(prop),
+});
+
+const Home = () => {
   return (
     <Layout>
       <Container>
@@ -29,6 +35,7 @@ const Page = () => {
           p={3}
           mb={6}
           align="center"
+          css={{ backdropFilter: "blur(10px)" }}
         >
           Welcome to my website!
         </Box>
@@ -49,12 +56,13 @@ const Page = () => {
               borderColor="whiteAlpha.800"
               borderWidth={2}
               borderStyle="solid"
-              maxWidth="100px"
+              maxW="100px"
               display="inline-block"
-              src="/images/profPic.jpg"
-              alt="Profile image"
               borderRadius="full"
               bg="black"
+              src="/images/profPic.jpg"
+              alt="Profile image"
+              overflow="hidden"
             />
           </Box>
         </Box>
@@ -65,12 +73,12 @@ const Page = () => {
           </Heading>
           <Paragraph>
             Many works in progress, including{" "}
-            <NextLink href="/works/idleclicker">
+            <NextLink href="/works/idleclicker" scroll={false}>
               <Link>idleclicker</Link>
             </NextLink>{" "}
           </Paragraph>
           <Box align="center" my={4}>
-            <NextLink href="/works">
+            <NextLink href="/works" scroll={false}>
               <Button rightIcon={<ChevronRightIcon />} colorScheme="telegram">
                 My portfolio
               </Button>
@@ -194,7 +202,7 @@ const Page = () => {
                 <Button
                   variant="ghost"
                   colorScheme="telegram"
-                  leftIcon={<Icon as={IoLogoGithub} />}
+                  leftIcon={<IoLogoGithub />}
                 >
                   @cdblaser
                 </Button>
@@ -205,7 +213,7 @@ const Page = () => {
                 <Button
                   variant="ghost"
                   colorScheme="telegram"
-                  leftIcon={<Icon as={IoLogoDiscord} />}
+                  leftIcon={<IoLogoDiscord />}
                 >
                   @Bignob#6843
                 </Button>
@@ -219,7 +227,7 @@ const Page = () => {
                 <Button
                   variant="ghost"
                   colorScheme="telegram"
-                  leftIcon={<Icon as={IoLogoYoutube} />}
+                  leftIcon={<IoLogoYoutube />}
                 >
                   @c13
                 </Button>
@@ -232,4 +240,5 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Home;
+export { getServerSideProps } from "../components/chakra";

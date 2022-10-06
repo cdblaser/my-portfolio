@@ -14,7 +14,7 @@ const Learn = () => (
       <Section delay={0.1}>
         <SimpleGrid columns={[1, 2, 2]} gap={6}>
           <GridItem
-            title="Leetcode, SPECIFICALLY Explore --> Intro to Data Structure courses"
+            title="Leetcode, SPECIFICALLY Intro to Data Structure courses/cards"
             thumbnail={thumbJohn}
             href="https://leetcode.com"
           />
@@ -25,3 +25,4 @@ const Learn = () => (
 );
 
 export default Learn;
+export { getServerSideProps } from "../components/chakra";

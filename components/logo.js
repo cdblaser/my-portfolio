@@ -11,7 +11,9 @@ const LogoBox = styled.span`
   height: 30px;
   line-height: 20px;
   padding: 10px;
-
+  img {
+    transition: 200ms ease;
+  }
   &:hover img {
     transform: scaleX(-1);
   }
@@ -21,7 +23,7 @@ const Logo = () => {
   const footPrintImg = `/images/bouncingSlime${useColorModeValue("", "")}.gif`;
 
   return (
-    <Link href="/">
+    <Link href="/" scroll={false}>
       <a>
         <LogoBox>
           <Image
@@ -33,7 +35,6 @@ const Logo = () => {
           />
           <Text
             color={useColorModeValue("gray.800", "whiteAlpha.900")}
-            fontFamily="monospace"
             fontWeight="bold"
             ml={3}
             mt={4}

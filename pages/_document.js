@@ -19,6 +19,7 @@ export default class Document extends NextDocument {
 
 /*
 TODO:
+1. add footer with online presence links
 3. light/dark mode - reverse pics (personal preference)
 5. Works --> idleclicker page - finish idleclicker, put it in here
 6. Works --> roguelike page - finish roguelike, put it in here

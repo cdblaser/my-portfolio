@@ -88,3 +88,4 @@ const IdleClicker = () => {
 };
 
 export default IdleClicker;
+export { getServerSideProps } from "../components/chakra";
