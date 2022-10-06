@@ -30,6 +30,7 @@ export const WorkGridItem = ({ children, id, title, thumbnail }) => (
           alt={title}
           className="grid-item-thumbnail"
           placeholder="empty"
+          unoptimized={true}
         />
         <LinkOverlay href={`/works/${id}`}>
           <Text mt={2} fontSize={20} colorScheme="telegram">

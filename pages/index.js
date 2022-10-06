@@ -5,7 +5,6 @@ import {
   Heading,
   Image,
   Link,
-  SimpleGrid,
   useColorModeValue,
   List,
   ListItem,
@@ -18,14 +17,7 @@ import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import { BioSection, BioYear } from "../components/bio";
 import { AwardSection, Award } from "../components/awards";
-import { GridItem } from "../components/grid-item";
-import {
-  IoLogoTwitter,
-  IoLogoInstagram,
-  IoLogoGithub,
-  IoLogoDiscord,
-} from "react-icons/io5";
-import thumbPiano from "../public/images/works/3cPortfolioDashboardPage.png";
+import { IoLogoGithub, IoLogoDiscord, IoLogoYoutube } from "react-icons/io5";
 
 const Page = () => {
   return (
@@ -215,20 +207,25 @@ const Page = () => {
                   colorScheme="telegram"
                   leftIcon={<Icon as={IoLogoDiscord} />}
                 >
-                  Bignob#6843
+                  @Bignob#6843
+                </Button>
+              </Link>
+            </ListItem>
+            <ListItem>
+              <Link
+                href="https://www.youtube.com/channel/UCFcd23kyFYF5lkYeJk-Rw1A"
+                target="_blank"
+              >
+                <Button
+                  variant="ghost"
+                  colorScheme="telegram"
+                  leftIcon={<Icon as={IoLogoYoutube} />}
+                >
+                  @c13
                 </Button>
               </Link>
             </ListItem>
           </List>
-          <SimpleGrid columns={[1, 2, 2]} gap={6}>
-            <GridItem
-              href="https://youtube.com"
-              title="Watch me play piano"
-              thumbnail={thumbPiano}
-            >
-              My youtube
-            </GridItem>
-          </SimpleGrid>
         </Section>
       </Container>
     </Layout>
