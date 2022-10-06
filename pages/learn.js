@@ -6,7 +6,7 @@ import { GridItem } from "../components/grid-item";
 import thumbJohn from "../public/images/ominousSwordsman.png";
 
 const Learn = () => (
-  <Layout title="Posts">
+  <Layout title="Learn">
     <Container>
       <Heading as="h3" fontSize={20} mb={4} mt={2}>
         My collection of the best f2p links to learn web dev

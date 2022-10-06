@@ -18,7 +18,6 @@ import Section from "../components/section";
 import Paragraph from "../components/paragraph";
 import { BioSection, BioYear } from "../components/bio";
 import { AwardSection, Award } from "../components/awards";
-import { IoLogoGithub, IoLogoDiscord, IoLogoYoutube } from "react-icons/io5";
 import NextImage from "next/image";
 
 const ProfileImage = chakra(Image, {
@@ -27,19 +26,9 @@ const ProfileImage = chakra(Image, {
 
 const Home = () => {
   return (
-    <Layout>
+    <Layout title="About">
       <Container>
-        <Box
-          borderRadius="lg"
-          bg={useColorModeValue("whiteAlpha.500", "whiteAlpha.200")}
-          p={3}
-          mb={6}
-          align="center"
-          css={{ backdropFilter: "blur(10px)" }}
-        >
-          Welcome to my website!
-        </Box>
-        <Box display={{ md: "flex" }}>
+        <Box mt={2} display={{ md: "flex" }}>
           <Box flexGrow={1}>
             <Heading as="h2" variant="page-title">
               Curtis Blaser
@@ -191,49 +180,6 @@ const Home = () => {
             I enjoy playing piano, riding my bike, chillin with the fam, and
             playing video games.
           </Paragraph>
-        </Section>
-        <Section delay={0.3}>
-          <Heading as="h3" variant="section-title">
-            Online Presence
-          </Heading>
-          <List>
-            <ListItem>
-              <Link href="https://github.com/cdblaser" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="telegram"
-                  leftIcon={<IoLogoGithub />}
-                >
-                  @cdblaser
-                </Button>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link href="https://discord.com" target="_blank">
-                <Button
-                  variant="ghost"
-                  colorScheme="telegram"
-                  leftIcon={<IoLogoDiscord />}
-                >
-                  @Bignob#6843
-                </Button>
-              </Link>
-            </ListItem>
-            <ListItem>
-              <Link
-                href="https://www.youtube.com/channel/UCFcd23kyFYF5lkYeJk-Rw1A"
-                target="_blank"
-              >
-                <Button
-                  variant="ghost"
-                  colorScheme="telegram"
-                  leftIcon={<IoLogoYoutube />}
-                >
-                  @c13
-                </Button>
-              </Link>
-            </ListItem>
-          </List>
         </Section>
       </Container>
     </Layout>
