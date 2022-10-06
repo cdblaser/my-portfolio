@@ -39,7 +39,7 @@ const Logo = () => {
             ml={3}
             mt={4}
           >
-            Curtis Blaser
+            Home
           </Text>
         </LogoBox>
       </a>

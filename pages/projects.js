@@ -1,36 +1,36 @@
 import { Container, Heading, SimpleGrid, Divider } from "@chakra-ui/react";
 import Section from "../components/section";
-import { WorkGridItem, PortfolioGridItem } from "../components/grid-item";
+import { ProjectGridItem, PortfolioGridItem } from "../components/grid-item";
 import thumbIdleclicker from "../public/images/Lily.gif";
 import thumbRoguelike from "../public/images/Wiz.gif";
-import thumb3c from "../public/images/works/works3cManagePageSample.png";
+import thumb3c from "../public/images/projects/3cManagePageSample.png";
 import Layout from "../components/layouts/article";
 
-const Works = () => {
+const Projects = () => {
   return (
-    <Layout title="Works">
+    <Layout title="Projects">
       <Container>
         <Heading as="h3" fontSize={20} mb={4} mt={2}>
-          Works
+          Projects
         </Heading>
         <SimpleGrid columns={[1, 1, 2]} gap={6}>
           <Section>
-            <WorkGridItem
+            <ProjectGridItem
               id="idleclicker"
               title="Idleclicker"
               thumbnail={thumbIdleclicker}
             >
               A simple idle clicker game
-            </WorkGridItem>
+            </ProjectGridItem>
           </Section>
           <Section>
-            <WorkGridItem
+            <ProjectGridItem
               id="roguelike"
               title="Roguelike"
               thumbnail={thumbRoguelike}
             >
               a simple roguelike
-            </WorkGridItem>
+            </ProjectGridItem>
           </Section>
           <Section>
             <PortfolioGridItem
@@ -50,5 +50,5 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default Projects;
 export { getServerSideProps } from "../components/chakra";

@@ -1,21 +1,4 @@
-import {
-  Container,
-  Box,
-  Link,
-  Stack,
-  Heading,
-  Flex,
-  Menu,
-  MenuItem,
-  MenuList,
-  MenuButton,
-  IconButton,
-  useColorModeValue,
-  List,
-  ListItem,
-  Button,
-} from "@chakra-ui/react";
-import Paragraph from "./paragraph";
+import { Box, Stack, useColorModeValue, Button } from "@chakra-ui/react";
 import { IoLogoGithub, IoLogoDiscord, IoLogoYoutube } from "react-icons/io5";
 
 const Footer = () => {

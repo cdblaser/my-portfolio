@@ -5,11 +5,8 @@ import {
   Heading,
   Link,
   useColorModeValue,
-  List,
-  ListItem,
   Button,
   Image,
-  Icon,
   chakra,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
@@ -58,16 +55,16 @@ const Home = () => {
 
         <Section delay={0.1}>
           <Heading as="h3" variant="section-title">
-            Works
+            Projects
           </Heading>
           <Paragraph>
-            Many works in progress, including{" "}
-            <NextLink href="/works/idleclicker" scroll={false}>
+            Many projects in progress, including{" "}
+            <NextLink href="/projects/idleclicker" scroll={false}>
               <Link>idleclicker</Link>
             </NextLink>{" "}
           </Paragraph>
           <Box align="center" my={4}>
-            <NextLink href="/works" scroll={false}>
+            <NextLink href="/projects" scroll={false}>
               <Button rightIcon={<ChevronRightIcon />} colorScheme="telegram">
                 My portfolio
               </Button>
@@ -82,7 +79,8 @@ const Home = () => {
             <BioYear>1989</BioYear>Took my first breath
           </BioSection>
           <BioSection>
-            <BioYear>1992</BioYear>Started piano
+            <BioYear>1992</BioYear>First memory is playing Super Mario Bros. for
+            the NES while sitting at the kitchen table. Also started piano
           </BioSection>
           <BioSection>
             <BioYear>1993</BioYear>Started violin and saxophone

@@ -5,8 +5,8 @@ import { GridItem } from "../components/grid-item";
 
 import thumbJohn from "../public/images/ominousSwordsman.png";
 
-const Learn = () => (
-  <Layout title="Learn">
+const Resources = () => (
+  <Layout title="Resources">
     <Container>
       <Heading as="h3" fontSize={20} mb={4} mt={2}>
         My collection of the best f2p links to learn web dev
@@ -24,5 +24,5 @@ const Learn = () => (
   </Layout>
 );
 
-export default Learn;
+export default Resources;
 export { getServerSideProps } from "../components/chakra";
