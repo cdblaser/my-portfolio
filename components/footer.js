@@ -1,11 +1,16 @@
-import { Box, Stack, useColorModeValue, Button } from "@chakra-ui/react";
+import { Box, Stack, useColorModeValue, Button, Flex } from "@chakra-ui/react";
 import { IoLogoGithub, IoLogoDiscord, IoLogoYoutube } from "react-icons/io5";
 
 const Footer = () => {
   return (
-    <Box position="absolute" w="100%" height="2.5em" wrap="wrap-reverse">
+    <Box
+      position="absolute"
+      w="100%"
+      height={{ base: "2.5em", md: "3.5em" }}
+      wrap="wrap-reverse"
+    >
       <Stack
-        direction={{ base: "row" }}
+        direction={{ base: "column", md: "row" }}
         width={{ base: "full" }}
         alignItems="center"
         justifyContent="space-evenly"
@@ -51,7 +56,14 @@ const Footer = () => {
         >
           @c13
         </Button>
-        <p style={{ fontSize: 14 }}>
+      </Stack>
+      <Flex
+        alignItems="center"
+        justifyContent="center"
+        bg={useColorModeValue("telegram.200", "telegram.800")}
+        md={2}
+      >
+        <p style={{ fontSize: 10 }}>
           <a
             href="https://www.craftz.dog/"
             target="_blank"
@@ -60,7 +72,7 @@ const Footer = () => {
             Shoutout to Craftzdog!
           </a>
         </p>
-      </Stack>
+      </Flex>
     </Box>
   );
 };

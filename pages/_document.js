@@ -22,9 +22,10 @@ export default class Document extends NextDocument {
 
 /*
 TODO:
-1. add footer with online presence links
-3. light/dark mode - reverse pics (personal preference)
+
 5. Works --> idleclicker page - finish idleclicker, put it in here
 6. Works --> roguelike page - finish roguelike, put it in here
-7. Posts page - either remove this or figure out what to put here.
+
+Coworker was EA for CEO of robert's last job. she helps write resumes. she knows somebody who can potentially get me a job.
+will she help me get a good resume? we'll see
 */

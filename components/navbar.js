@@ -44,7 +44,7 @@ const Navbar = (props) => {
       as="nav"
       w="100%"
       bg={useColorModeValue("#ffffff40", "#20202380")}
-      css={{ backdropFilter: "blur(10px)" }}
+      css={{ backdropFilter: "blur(15px)" }}
       zIndex={1}
       {...props}
     >
@@ -88,7 +88,7 @@ const Navbar = (props) => {
               />
               <MenuList>
                 <NextLink href="/" scroll={false}>
-                  <MenuItem as={Link}>About</MenuItem>
+                  <MenuItem as={Link}>Home</MenuItem>
                 </NextLink>
                 <NextLink href="/projects" scroll={false}>
                   <MenuItem as={Link}>Projects</MenuItem>
