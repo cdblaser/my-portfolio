@@ -6,3 +6,4 @@ const Roguelike = () => {
 };
 
 export default Roguelike;
+export { getServerSideProps } from "../../components/chakra";
