@@ -29,7 +29,7 @@ const Projects = () => {
               title="Roguelike"
               thumbnail={thumbRoguelike}
             >
-              a simple roguelike
+              A simple roguelike
             </ProjectGridItem>
           </Section>
           <Section>

@@ -13,7 +13,7 @@ const Footer = () => {
         direction={{ base: "column", md: "row" }}
         width={{ base: "full" }}
         alignItems="center"
-        justifyContent="space-evenly"
+        justifyContent="center"
         wrap="wrap"
         white-space="nowrap"
         flexGrow={1}

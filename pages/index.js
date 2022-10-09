@@ -59,8 +59,8 @@ const Home = () => {
           </Heading>
           <Paragraph>
             Many projects in progress, including{" "}
-            <NextLink href="/projects/idleclicker" scroll={false}>
-              <Link>idleclicker</Link>
+            <NextLink href="/projects/roguelike" scroll={false}>
+              <Link>roguelike</Link>
             </NextLink>{" "}
           </Paragraph>
           <Box align="center" my={4}>
