@@ -20,7 +20,7 @@ const Projects = () => {
               title="Idleclicker"
               thumbnail={thumbIdleclicker}
             >
-              A simple idle clicker game
+              A simple idle clicker game (in progress)
             </ProjectGridItem>
           </Section>
           <Section>
@@ -29,7 +29,12 @@ const Projects = () => {
               title="Roguelike"
               thumbnail={thumbRoguelike}
             >
-              A simple roguelike
+              A simple roguelike (almost completed!)
+            </ProjectGridItem>
+          </Section>
+          <Section>
+            <ProjectGridItem id="league" title="League Stats" thumbnail="">
+              Look up League of Legends stats (in progress)
             </ProjectGridItem>
           </Section>
           <Section>

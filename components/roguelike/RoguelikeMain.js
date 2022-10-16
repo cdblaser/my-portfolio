@@ -30,6 +30,8 @@ const RoguelikeMain = ({ width, height, tileSize }) => {
     newWorld.moveToSpace(world.player);
     let spawner = new Spawner(newWorld);
     spawner.spawnLoot(10);
+    spawner.spawnMonsters(10);
+    spawner.spawnStairs();
     setWorld(newWorld);
   }, []);
 
@@ -52,12 +54,24 @@ const RoguelikeMain = ({ width, height, tileSize }) => {
   });
 
   return (
-    <canvas
-      ref={canvasRef}
-      width={width * tileSize}
-      height={height * tileSize}
-      style={{ border: "1px solid black", backgroundColor: "grey" }}
-    ></canvas>
+    <>
+      <canvas
+        ref={canvasRef}
+        width={width * tileSize}
+        height={height * tileSize}
+        style={{ border: "1px solid black", backgroundColor: "dimgrey" }}
+      ></canvas>
+      <ul>
+        {world.player.inventory.map((item, index) => {
+          return <li key={index}>{item.attributes.name}</li>;
+        })}
+      </ul>
+      <ul>
+        {world.history.map((item, index) => {
+          return <li key={index}>{item}</li>;
+        })}
+      </ul>
+    </>
   );
 };
 

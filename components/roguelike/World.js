@@ -8,6 +8,7 @@ class World {
     this.tileSize = tileSize;
     this.worldmap = new Array(this.width);
     this.entities = [new Player(0, 0, 16)];
+    this.history = ["You entered the dungeon!", "-----"];
     for (let x = 0; x < this.width; x++) {
       this.worldmap[x] = new Array(this.height);
     }
@@ -21,10 +22,14 @@ class World {
     this.entities.push(entity);
   }
 
+  remove(entity) {
+    this.entities = this.entities.filter((e) => e !== entity);
+  }
+
   moveToSpace(entity) {
     for (let x = entity.x; x < this.width; x++) {
       for (let y = entity.y; y < this.height; y++) {
-        if (this.worldmap[x][y] === 0) {
+        if (this.worldmap[x][y] === 0 && !this.getEntityAtLocation(x, y)) {
           entity.x = x;
           entity.y = y;
           return;
@@ -50,7 +55,6 @@ class World {
     tempPlayer.move(dx, dy);
     let entity = this.getEntityAtLocation(tempPlayer.x, tempPlayer.y);
     if (entity) {
-      console.log(entity);
       entity.action("bump", this);
       return;
     }
@@ -103,6 +107,10 @@ class World {
       this.tileSize,
       this.tileSize
     );
+  }
+  addToHistory(history) {
+    this.history.push(history);
+    if (this.history.length > 6) this.history.shift();
   }
 }
 export default World;
