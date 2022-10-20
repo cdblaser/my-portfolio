@@ -1,37 +1,78 @@
-// import { useState, useEffect } from "react";
-// import axios from "axios";
-// const express = require("express");
-// const app = express();
-// import freeChampRotation from "../../apis/league";
+import React, { useState, useEffect } from "react";
+import { Container, SimpleGrid } from "@chakra-ui/react";
+import { ChampionGridItem } from "../../components/grid-item";
 
-// const League = () => {
-//   const [backendData, setBackendData] = useState([{}]);
+const League = () => {
+  const [champions, setChampions] = useState([]);
+  const [championImages, setChampionImages] = useState([]);
 
-//   const getData = async () => {
-//     const response = await freeChampRotation.get("");
-//     setBackendData(response.data);
-//   };
+  const getChampionNames = async () => {
+    const res = await fetch("http://localhost:8080/champions", {
+      method: "GET",
+    });
+    const championsArray = await res.json();
+    setChampions(championsArray);
+  };
 
-//   useEffect(() => {
-//     // fetch("/api")
-//     //   .then((response) => response.json(response.data))
-//     //   .then((data) => {
-//     //     setBackendData(data);
-//     //   });
-//     getData();
-//   }, []);
+  // {champions.map((champion) => (
+  //   <div>{champion}</div>
+  // ))}
 
-//   return (
-//     <div>
-//       {typeof backendData.freeChampionIds === "undefined" ? (
-//         <p>Loading...</p>
-//       ) : (
-//         backendData.freeChampionIds.map((user, i) => <p key={i}>{user}</p>)
-//       )}
-//     </div>
-//   );
-// };
+  const getChampionImages = async () => {
+    const res = await fetch("http://localhost:8080/championImages", {
+      method: "GET",
+    });
+    const championImagesArray = await res.json();
+    setChampionImages(championImagesArray);
+  };
 
-export default function League() {
-  return <div>Work in progress...</div>;
-}
+  useEffect(() => {
+    getChampionNames();
+    getChampionImages();
+  }, []);
+
+  if (!champions) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <Container>
+        <SimpleGrid columns={[3, 4, 6]} spacingY={1} spacingX={1}>
+          {champions.map((imageName) => (
+            <ChampionGridItem
+              id={imageName}
+              thumbnail={`/images/projects/championImages/${imageName}_0.jpg`}
+              title={imageName}
+            ></ChampionGridItem>
+          ))}
+        </SimpleGrid>
+      </Container>
+    );
+  }
+
+  // const [backendData, setBackendData] = useState([{}]);
+
+  // const getData = async () => {
+  //   const response = await freeChampRotation.get("");
+  //   setBackendData(response.data);
+  // };
+
+  // useEffect(() => {
+  //   // fetch("/api")
+  //   //   .then((response) => response.json(response.data))
+  //   //   .then((data) => {
+  //   //     setBackendData(data);
+  //   //   });
+  //   getData();
+  // }, []);
+  // return (
+  //   <div>
+  //     {typeof backendData.freeChampionIds === "undefined" ? (
+  //       <p>Loading...</p>
+  //     ) : (
+  //       backendData.freeChampionIds.map((user, i) => <p key={i}>{user}</p>)
+  //     )}
+  //   </div>
+  // );
+};
+
+export default League;

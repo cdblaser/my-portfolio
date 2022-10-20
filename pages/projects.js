@@ -1,4 +1,4 @@
-import { Container, Heading, SimpleGrid, Divider } from "@chakra-ui/react";
+import { Container, Heading, SimpleGrid } from "@chakra-ui/react";
 import Section from "../components/section";
 import { ProjectGridItem, PortfolioGridItem } from "../components/grid-item";
 import thumbIdleclicker from "../public/images/Lily.gif";
