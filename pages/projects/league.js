@@ -28,7 +28,7 @@ const League = () => {
 
   useEffect(() => {
     getChampionNames();
-    getChampionImages();
+    // getChampionImages();
   }, []);
 
   if (!champions) {
