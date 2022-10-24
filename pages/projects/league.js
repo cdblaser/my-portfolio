@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Container, SimpleGrid } from "@chakra-ui/react";
 import { ChampionGridItem } from "../../components/grid-item";
 
@@ -37,12 +37,16 @@ const League = () => {
     return (
       <Container>
         <SimpleGrid columns={[3, 4, 6]} spacingY={1} spacingX={1}>
-          {champions.map((imageName) => (
-            <ChampionGridItem
-              id={imageName}
-              thumbnail={`/images/projects/championImages/${imageName}_0.jpg`}
-              title={imageName}
-            ></ChampionGridItem>
+          {champions.map((champion) => (
+            <Fragment>
+              <ChampionGridItem
+                id={champion}
+                thumbnail={`/images/projects/championImages/${champion}_0.jpg`}
+                title={champion}
+              >
+                {champion}
+              </ChampionGridItem>
+            </Fragment>
           ))}
         </SimpleGrid>
       </Container>

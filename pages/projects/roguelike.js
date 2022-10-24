@@ -1,8 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
 import RoguelikeMain from "../../components/roguelike/RoguelikeMain";
 
 const Roguelike = () => {
-  return <RoguelikeMain width={40} height={40} tileSize={16} />;
+  return (
+    <Fragment>
+      (game not supported on mobile.... yet!)
+      <RoguelikeMain width={40} height={40} tileSize={16} />
+    </Fragment>
+  );
 };
 
 export default Roguelike;

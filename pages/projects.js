@@ -5,6 +5,7 @@ import thumbIdleclicker from "../public/images/Lily.gif";
 import thumbRoguelike from "../public/images/Wiz.gif";
 import thumb3c from "../public/images/projects/3cManagePageSample.png";
 import Layout from "../components/layouts/article";
+import thumbLeague from "../public/images/projects/Ahri_Splash.jpg";
 
 const Projects = () => {
   return (
@@ -33,7 +34,11 @@ const Projects = () => {
             </ProjectGridItem>
           </Section>
           <Section>
-            <ProjectGridItem id="league" title="League Stats" thumbnail="">
+            <ProjectGridItem
+              id="league"
+              title="League Stats"
+              thumbnail={thumbLeague}
+            >
               Look up League of Legends stats (in progress)
             </ProjectGridItem>
           </Section>

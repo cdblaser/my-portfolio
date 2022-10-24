@@ -62,24 +62,24 @@ export const PortfolioGridItem = ({ children, href, id, title, thumbnail }) => (
   </Box>
 );
 
-export const ChampionGridItem = ({ id, title, thumbnail }) => (
+export const ChampionGridItem = ({ id, title, children, thumbnail }) => (
   <Box w="100%" align="center">
     <NextLink href={`/projects/league/${id}`} scroll={false}>
       <LinkBox cursor="pointer">
         <Image
           layout="responsive"
-          width={50}
-          height={50}
+          width={40}
+          height={40}
           src={thumbnail}
           alt={title}
           title={title}
           className="grid-item-thumbnail"
           placeholder="empty"
-          overflow="hidden"
-          unoptimized="true"
-          priority
         />
-        <LinkOverlay href={`/projects//league/${id}`}></LinkOverlay>
+        <LinkOverlay href={`/projects/league/${id}`}></LinkOverlay>
+        <Text wordBreak="" fontSize={10}>
+          {children}
+        </Text>
       </LinkBox>
     </NextLink>
   </Box>
