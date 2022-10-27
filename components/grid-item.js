@@ -66,8 +66,9 @@ export const ChampionGridItem = ({ id, title, children, thumbnail }) => (
   <Box w="100%" align="center">
     <NextLink href={`/projects/league/${id}`} scroll={false}>
       <LinkBox cursor="pointer">
-        <Image
-          layout="responsive"
+        <img
+          key={id}
+          layout="fixed"
           width={40}
           height={40}
           src={thumbnail}

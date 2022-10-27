@@ -36,17 +36,17 @@ const League = () => {
   } else {
     return (
       <Container>
-        <SimpleGrid columns={[3, 4, 6]} spacingY={1} spacingX={1}>
+        <SimpleGrid columns={[6]} spacingY={1} spacingX={1}>
           {champions.map((champion) => (
-            <Fragment>
-              <ChampionGridItem
-                id={champion}
-                thumbnail={`/images/projects/championImages/${champion}_0.jpg`}
-                title={champion}
-              >
-                {champion}
-              </ChampionGridItem>
-            </Fragment>
+            // <Fragment>
+            <ChampionGridItem
+              id={champion}
+              thumbnail={`/images/projects/championImages/${champion}_0.jpg`}
+              title={champion}
+            >
+              {champion}
+            </ChampionGridItem>
+            // </Fragment>
           ))}
         </SimpleGrid>
       </Container>
