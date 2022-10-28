@@ -5,7 +5,7 @@ import thumbIdleclicker from "../public/images/Lily.gif";
 import thumbRoguelike from "../public/images/Wiz.gif";
 import thumb3c from "../public/images/projects/3cManagePageSample.png";
 import Layout from "../components/layouts/article";
-import thumbLeague from "../public/images/projects/Ahri_Splash.jpg";
+import thumbLeague from "../public/images/projects/league/Ahri_Splash.jpg";
 
 const Projects = () => {
   return (
