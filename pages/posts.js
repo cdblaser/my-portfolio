@@ -3,7 +3,7 @@ import Layout from "../components/layouts/article";
 import Section from "../components/section";
 import { GridItem } from "../components/grid-item";
 
-import thumbJohn from "../public/images/ominousSwordsman.png";
+import thumbJohn from "../public/images/placeholders/ominousSwordsman.png";
 
 const Posts = () => (
   <Layout title="Posts">
