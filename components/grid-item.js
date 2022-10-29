@@ -76,7 +76,7 @@ export const ChampionGridItem = ({ id, title, children, thumbnail }) => (
           className="grid-item-thumbnail"
           placeholder="empty"
         />
-        <LinkOverlay href={`/projects/league/${id}`}></LinkOverlay>
+        {/* <LinkOverlay href={`/projects/league/${id}`}></LinkOverlay> */}
         <Text
           alignSelf="flex-start"
           wordBreak=""

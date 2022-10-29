@@ -1,4 +1,11 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  Fragment,
+  memo,
+} from "react";
 import {
   Container,
   SimpleGrid,
@@ -19,17 +26,21 @@ import { SearchIcon } from "@chakra-ui/icons";
 import { ChampionGridItem } from "../../components/grid-item";
 import { IconButtonItem } from "../../components/league/icon-button";
 import Layout from "../../components/layouts/article";
-import BotIcon from "../../public/images/projects/league/BotIconChallenger.png";
-import JungleIcon from "../../public/images/projects/league/JungleIconChallenger.png";
-import MidIcon from "../../public/images/projects/league/MidIconChallenger.png";
-import SupportIcon from "../../public/images/projects/league/SupportIconChallenger.png";
-import TopIcon from "../../public/images/projects/league/TopIconChallenger.png";
+import ChampIconList from "../../components/league/champ-icon-list";
+// import BotIcon from "/images/projects/league/BotIconChallenger.png";
+// import JungleIcon from "/images/projects/league/JungleIconChallenger.png";
+// import MidIcon from "/images/projects/league/MidIconChallenger.png";
+// import SupportIcon from "/images/projects/league/SupportIconChallenger.png";
+// import TopIcon from "/images/projects/league/TopIconChallenger.png";
 
 const League = () => {
   const [champions, setChampions] = useState([]);
-  const [championImages, setChampionImages] = useState([]);
+  const [search, setSearch] = useState("");
+  const [display, setDisplay] = useState("");
+  const loadImages = [];
 
-  const getChampionNames = async () => {
+  //get champion list
+  const getChampionList = async () => {
     const res = await fetch("http://localhost:8080/champions", {
       method: "GET",
     });
@@ -37,17 +48,26 @@ const League = () => {
     setChampions(championsArray);
   };
 
-  // const getChampionImages = async () => {
-  //   const res = await fetch("http://localhost:8080/championImages", {
-  //     method: "GET",
-  //   });
-  //   const championImagesArray = await res.json();
-  //   setChampionImages(championImagesArray);
-  // };
+  const onSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  // const FilteredChampionList = React.memo(championFilter);
+
+  const ChampionList = React.memo(({ champions }) =>
+    champions.map((champion) => (
+      <ChampionGridItem
+        id={champion}
+        title={champion}
+        thumbnail={`/images/projects/league/championImages/${champion}.webp`}
+      >
+        {champion}
+      </ChampionGridItem>
+    ))
+  );
 
   useEffect(() => {
-    getChampionNames();
-    // getChampionImages();
+    getChampionList();
   }, []);
 
   return (
@@ -136,7 +156,7 @@ const League = () => {
             area={"select"}
             width="100%"
           >
-            <label for="championSearch">
+            <label>
               <InputGroup>
                 <InputLeftElement
                   pointerEvents="none"
@@ -144,11 +164,13 @@ const League = () => {
                 />
                 <Input
                   id="championSearch"
+                  onChange={onSearchChange}
                   type="search"
                   variant="filled"
                   backgroundColor="rgb(28,28,31)"
                   placeholder="Search a Champion"
                   mb={2}
+                  color="white"
                 />
               </InputGroup>
             </label>
@@ -186,7 +208,6 @@ const League = () => {
                 icon="/images/projects/league/SupportIconChallenger.png"
               />
             </Flex>
-
             <Flex
               flexWrap="wrap"
               alignItems="center"
@@ -194,15 +215,7 @@ const League = () => {
               m={-5}
               mt={2}
             >
-              {champions.map((champion) => (
-                <ChampionGridItem
-                  id={champion}
-                  title={champion}
-                  thumbnail={`/images/projects/league/championImages/${champion}.png`}
-                >
-                  {champion}
-                </ChampionGridItem>
-              ))}
+              <ChampionList champions={champions} />
             </Flex>
           </GridItem>
           <GridItem p={2} bg="rgb(49,49,60)" borderRadius="5px" area={"stats"}>
