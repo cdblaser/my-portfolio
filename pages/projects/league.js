@@ -1,11 +1,12 @@
 import React, {
+  useRef,
   useState,
   useEffect,
   useCallback,
   useMemo,
   Fragment,
   memo,
-} from "react";
+} from 'react';
 import {
   Container,
   SimpleGrid,
@@ -21,12 +22,12 @@ import {
   Spacer,
   Button,
   useColorModeValue,
-} from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
-import { ChampionGridItem } from "../../components/grid-item";
-import { IconButtonItem } from "../../components/league/icon-button";
-import Layout from "../../components/layouts/article";
-import ChampIconList from "../../components/league/champ-icon-list";
+} from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
+import { ChampionGridItem } from '../../components/grid-item';
+import { IconButtonItem } from '../../components/league/icon-button';
+import Layout from '../../components/layouts/article';
+import ChampIconList from '../../components/league/champ-icon-list';
 // import BotIcon from "/images/projects/league/BotIconChallenger.png";
 // import JungleIcon from "/images/projects/league/JungleIconChallenger.png";
 // import MidIcon from "/images/projects/league/MidIconChallenger.png";
@@ -35,21 +36,35 @@ import ChampIconList from "../../components/league/champ-icon-list";
 
 const League = () => {
   const [champions, setChampions] = useState([]);
-  const [search, setSearch] = useState("");
-  const [display, setDisplay] = useState("");
+  const searchRef = useRef('');
+  const [display, setDisplay] = useState('');
   const loadImages = [];
 
   //get champion list
   const getChampionList = async () => {
-    const res = await fetch("http://localhost:8080/champions", {
-      method: "GET",
+    const res = await fetch('http://localhost:8080/champions', {
+      method: 'GET',
     });
     const championsArray = await res.json();
     setChampions(championsArray);
   };
 
+  const updateList = (string) => {
+    champions.forEach((champion) => {
+      const ele = document.getElementById(champion);
+      if (ele) {
+        ele.style.display = !champion
+          .toLowerCase()
+          .includes(string.toLowerCase())
+          ? 'none'
+          : 'block';
+      }
+    });
+  };
+
   const onSearchChange = (e) => {
-    setSearch(e.target.value);
+    searchRef.current = e.target.value;
+    updateList(searchRef.current);
   };
 
   // const FilteredChampionList = React.memo(championFilter);
@@ -77,8 +92,8 @@ const League = () => {
           templateAreas={`"header header"
                           "select stats"
                         `}
-          gridTemplateRows={"48px 1fr"}
-          gridTemplateColumns={"350px 1fr"}
+          gridTemplateRows={'48px 1fr'}
+          gridTemplateColumns={'350px 1fr'}
           h="100%"
           w="1000px"
           gap={2}
@@ -87,7 +102,7 @@ const League = () => {
           fontWeight="bold"
           pt={2}
         >
-          <GridItem p={1} bg="rgb(49,49,60)" borderRadius="5px" area={"header"}>
+          <GridItem p={1} bg="rgb(49,49,60)" borderRadius="5px" area={'header'}>
             <Flex justifyContent="center">
               <IconButtonItem
                 pl={10}
@@ -153,7 +168,7 @@ const League = () => {
             pb={5}
             bg="rgb(49,49,60)"
             borderRadius="5px"
-            area={"select"}
+            area={'select'}
             width="100%"
           >
             <label>
@@ -215,10 +230,14 @@ const League = () => {
               m={-5}
               mt={2}
             >
-              <ChampionList champions={champions} />
+              {!!champions.length ? (
+                <ChampionList champions={champions} />
+              ) : (
+                <div>Loading...</div>
+              )}
             </Flex>
           </GridItem>
-          <GridItem p={2} bg="rgb(49,49,60)" borderRadius="5px" area={"stats"}>
+          <GridItem p={2} bg="rgb(49,49,60)" borderRadius="5px" area={'stats'}>
             Main
           </GridItem>
         </Grid>

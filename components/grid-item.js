@@ -63,7 +63,7 @@ export const PortfolioGridItem = ({ children, href, id, title, thumbnail }) => (
 );
 
 export const ChampionGridItem = ({ id, title, children, thumbnail }) => (
-  <Box w="15%" align="center" key={id}>
+  <Box id={id} w="15%" align="center" key={id}>
     <NextLink href={`/projects/league/${id}`} scroll={false}>
       <LinkBox cursor="pointer">
         <Image
