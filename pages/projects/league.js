@@ -1,74 +1,121 @@
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useMemo,
-  Fragment,
-  memo,
-} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Container,
-  SimpleGrid,
   Grid,
   GridItem,
   Box,
-  Image,
   Input,
   InputGroup,
   InputLeftElement,
   IconButton,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
   Flex,
   Spacer,
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
+import Image from "next/image";
 import { ChampionGridItem } from "../../components/grid-item";
 import { IconButtonItem } from "../../components/league/icon-button";
 import Layout from "../../components/layouts/article";
-import ChampIconList from "../../components/league/champ-icon-list";
-// import BotIcon from "/images/projects/league/BotIconChallenger.png";
-// import JungleIcon from "/images/projects/league/JungleIconChallenger.png";
-// import MidIcon from "/images/projects/league/MidIconChallenger.png";
-// import SupportIcon from "/images/projects/league/SupportIconChallenger.png";
-// import TopIcon from "/images/projects/league/TopIconChallenger.png";
+// import LaneTab from "../../components/league/LaneTab";
 
 const League = () => {
-  const [champions, setChampions] = useState([]);
-  const [search, setSearch] = useState("");
-  const [display, setDisplay] = useState("");
-  const loadImages = [];
+  const [champions, setChampions] = useState({});
+  const [rotation, setRotation] = useState({});
+
+  // const [championTags, setChampionTags] = useState({});
+  let chooseRole = "All";
+  const searchRef = useRef("");
 
   //get champion list
-  const getChampionList = async () => {
-    const res = await fetch("http://localhost:8080/champions", {
+  const getChampionInfo = async () => {
+    const res = await fetch("http://localhost:8080/api/v2/champions", {
       method: "GET",
     });
-    const championsArray = await res.json();
-    setChampions(championsArray);
+    const championNamesAndTags = await res.json();
+    setChampions(championNamesAndTags);
+  };
+
+  useEffect(() => {
+    getChampionInfo();
+  }, []);
+
+  //get champion rotation
+  const getChampionRotation = async () => {
+    const res = await fetch("http://localhost:8080/api/v2/rotation", {
+      method: "GET",
+    });
+    const championRotation = await res.json();
+    setRotation(championRotation);
+  };
+
+  //render champion grid
+  const ChampionList = React.memo(({ champions }) =>
+    champions.map((champion) => {
+      const laneFormat = champion["lanes"].map((lane) => ` ${lane} `);
+
+      return (
+        <ChampionGridItem
+          id={champion.name}
+          lane={laneFormat}
+          title={champion.name}
+          thumbnail={`/images/projects/league/championImages/${champion.name}.webp`}
+        >
+          {champion.name}
+        </ChampionGridItem>
+      );
+    })
+  );
+
+  //search bar functionality - search by champion
+  const updateList = (string) => {
+    champions.forEach((champion) => {
+      const eleId = document.getElementById(champion.name);
+
+      if (eleId) {
+        if (champion["name"].toLowerCase().includes(string.toLowerCase())) {
+          eleId.style.display = "block";
+        } else {
+          eleId.style.display = "none";
+        }
+      }
+    });
   };
 
   const onSearchChange = (e) => {
-    setSearch(e.target.value);
+    searchRef.current = e.target.value;
+    updateList(searchRef.current);
   };
 
-  // const FilteredChampionList = React.memo(championFilter);
+  //button filter functionality
+  const onTabChange = (e) => {
+    const searchBar = document.getElementById("championSearch");
+    searchBar.value = "";
 
-  const ChampionList = React.memo(({ champions }) =>
-    champions.map((champion) => (
-      <ChampionGridItem
-        id={champion}
-        title={champion}
-        thumbnail={`/images/projects/league/championImages/${champion}.webp`}
-      >
-        {champion}
-      </ChampionGridItem>
-    ))
-  );
+    champions.forEach((champion) => {
+      const eleId = document.getElementById(champion.name);
 
-  useEffect(() => {
-    getChampionList();
-  }, []);
+      if (e.currentTarget.value === "All") {
+        eleId.style.display = "block";
+        return;
+      } else if (eleId) {
+        eleId.style.display = "none";
+      }
+    });
+    const eleClass = document.getElementsByClassName(e.currentTarget.value);
+
+    for (let i = 0; i < eleClass.length; i++) {
+      if (eleClass[i]) {
+        eleClass[i].style.display = "block";
+      }
+    }
+  };
 
   return (
     <Layout title="NaopggClone">
@@ -110,42 +157,79 @@ const League = () => {
               />
 
               <Spacer />
-
-              <IconButtonItem
-                borderRightRadius="0px"
-                borderRightWidth="0px"
-                pl={4}
-                pr={4}
-                icon="/images/projects/league/TopIconChallenger.png"
-              />
-              <IconButtonItem
-                borderRadius="0px"
-                borderRightWidth="0px"
-                pl={4}
-                pr={4}
-                icon="/images/projects/league/JungleIconChallenger.png"
-              />
-              <IconButtonItem
-                borderRadius="0px"
-                borderRightWidth="0px"
-                pl={4}
-                pr={4}
-                icon="/images/projects/league/MidIconChallenger.png"
-              />
-              <IconButtonItem
-                borderRadius="0px"
-                borderRightWidth="0px"
-                pl={4}
-                pr={4}
-                icon="/images/projects/league/BotIconChallenger.png"
-              />
-              <IconButtonItem
-                borderLeftRadius="0px"
-                pl={4}
-                pr={4}
-                mr={1}
-                icon="/images/projects/league/SupportIconChallenger.png"
-              />
+              <Tabs
+                // onChange={onTabChange}
+                defaultIndex={0}
+                size="md"
+                align="center"
+                variant="unstyled"
+                color="whiteAlpha.900"
+              >
+                <TabList>
+                  <Tab
+                    borderWidth="1px"
+                    borderLeftRadius="5px"
+                    pl={3}
+                    pr={3}
+                    _selected={{ bg: "#5383E8" }}
+                  >
+                    All
+                  </Tab>
+                  <Tab
+                    borderWidth="1px"
+                    pl={3}
+                    pr={3}
+                    _selected={{ bg: "#5383E8" }}
+                  >
+                    Top
+                  </Tab>
+                  <Tab
+                    borderWidth="1px"
+                    pl={3}
+                    pr={3}
+                    _selected={{ bg: "#5383E8" }}
+                  >
+                    Jungle
+                  </Tab>
+                  <Tab
+                    borderWidth="1px"
+                    pl={3}
+                    pr={3}
+                    _selected={{ bg: "#5383E8" }}
+                  >
+                    Mid
+                  </Tab>
+                  <Tab
+                    borderWidth="1px"
+                    pl={3}
+                    pr={3}
+                    _selected={{ bg: "#5383E8" }}
+                  >
+                    Bot
+                  </Tab>
+                  <Tab
+                    borderWidth="1px"
+                    pl={3}
+                    pr={3}
+                    borderRightRadius="5px"
+                    _selected={{ bg: "#5383E8" }}
+                  >
+                    Support
+                  </Tab>
+                </TabList>
+                {/* <TabPanels>
+                <TabPanel>
+                  <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                  <p>two!</p>
+                </TabPanel>
+                <TabPanel></TabPanel>
+                <TabPanel></TabPanel>
+                <TabPanel></TabPanel>
+                <TabPanel></TabPanel>
+              </TabPanels> */}
+              </Tabs>
             </Flex>
           </GridItem>
           <GridItem
@@ -186,26 +270,43 @@ const League = () => {
               <IconButtonItem
                 borderRightRadius="0px"
                 borderRightWidth="0px"
-                icon="/images/projects/league/TopIconChallenger.png"
+                icon="/images/projects/league/FillIcon.png"
+                value="All"
+                onClick={onTabChange}
               />
               <IconButtonItem
                 borderRadius="0px"
                 borderRightWidth="0px"
-                icon="/images/projects/league/JungleIconChallenger.png"
+                icon="/images/projects/league/TopIcon.png"
+                value="Tank"
+                onClick={onTabChange}
               />
               <IconButtonItem
                 borderRadius="0px"
                 borderRightWidth="0px"
-                icon="/images/projects/league/MidIconChallenger.png"
+                icon="/images/projects/league/JungleIcon.png"
+                value="Fighter"
+                onClick={onTabChange}
               />
               <IconButtonItem
                 borderRadius="0px"
                 borderRightWidth="0px"
-                icon="/images/projects/league/BotIconChallenger.png"
+                icon="/images/projects/league/MidIcon.png"
+                value="Mage"
+                onClick={onTabChange}
+              />
+              <IconButtonItem
+                borderRadius="0px"
+                borderRightWidth="0px"
+                icon="/images/projects/league/BotIcon.png"
+                value="Marksman"
+                onClick={onTabChange}
               />
               <IconButtonItem
                 borderLeftRadius="0px"
-                icon="/images/projects/league/SupportIconChallenger.png"
+                icon="/images/projects/league/SupIcon.png"
+                value="Support"
+                onClick={onTabChange}
               />
             </Flex>
             <Flex
@@ -215,43 +316,20 @@ const League = () => {
               m={-5}
               mt={2}
             >
-              <ChampionList champions={champions} />
+              {champions.length > 0 ? (
+                <ChampionList champions={champions} />
+              ) : (
+                <div>Loading...</div>
+              )}
             </Flex>
           </GridItem>
           <GridItem p={2} bg="rgb(49,49,60)" borderRadius="5px" area={"stats"}>
-            Main
+            main
           </GridItem>
         </Grid>
       </Box>
     </Layout>
   );
-
-  //OUTDATED CODE
-
-  // const [backendData, setBackendData] = useState([{}]);
-
-  // const getData = async () => {
-  //   const response = await freeChampRotation.get("");
-  //   setBackendData(response.data);
-  // };
-
-  // useEffect(() => {
-  //   // fetch("/api")
-  //   //   .then((response) => response.json(response.data))
-  //   //   .then((data) => {
-  //   //     setBackendData(data);
-  //   //   });
-  //   getData();
-  // }, []);
-  // return (
-  //   <div>
-  //     {typeof backendData.freeChampionIds === "undefined" ? (
-  //       <p>Loading...</p>
-  //     ) : (
-  //       backendData.freeChampionIds.map((user, i) => <p key={i}>{user}</p>)
-  //     )}
-  //   </div>
-  // );
 };
 
 export default League;

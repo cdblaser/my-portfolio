@@ -10,8 +10,11 @@ export const IconButtonItem = ({
   ml,
   mr,
   icon,
+  value,
+  onClick,
 }) => (
   <IconButton
+    aria-label="role"
     colorScheme="rgb(49,49,60)"
     borderRightRadius={borderRightRadius}
     borderLeftRadius={borderLeftRadius}
@@ -20,13 +23,16 @@ export const IconButtonItem = ({
     borderWidth="1px"
     borderRightWidth={borderRightWidth}
     borderColor={useColorModeValue("gray", "whiteAlpha.700")}
+    data-selected={{ bg: "rbg(83,131,232)" }}
     _hover={{ bg: "rgb(30,30,50)" }}
     _active={{ bg: "rgb(0,0,0)" }}
-    _focus={{ bg: "rgb(83,131,232)" }}
+    // _focus={{ bg: "rgb(83,131,232)" }}
     pl={pl}
     pr={pr}
     ml={ml}
     mr={mr}
     icon={<Image src={icon} width={8} height={8} />}
+    value={value}
+    onClick={onClick}
   />
 );
