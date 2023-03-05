@@ -28,6 +28,10 @@ import Layout from "../../components/layouts/article";
 const League = () => {
   const [champions, setChampions] = useState({});
   const [rotation, setRotation] = useState({});
+  const [region, setRegion] = useState("NA1");
+  const [queue, setQueue] = useState("RANKED_SOLO_5x5");
+  const [tier, setTier] = useState("PLATINUM");
+  const [division, setDivision] = useState("I");
 
   // const [championTags, setChampionTags] = useState({});
   let chooseRole = "All";
@@ -35,7 +39,7 @@ const League = () => {
 
   //get champion list
   const getChampionInfo = async () => {
-    const res = await fetch("http://localhost:8080/api/v2/champions", {
+    const res = await fetch("http://localhost:8080/api/v2/championdata", {
       method: "GET",
     });
     const championNamesAndTags = await res.json();
@@ -75,6 +79,7 @@ const League = () => {
 
   //search bar functionality - search by champion
   const updateList = (string) => {
+    onTabChange();
     champions.forEach((champion) => {
       const eleId = document.getElementById(champion.name);
 
